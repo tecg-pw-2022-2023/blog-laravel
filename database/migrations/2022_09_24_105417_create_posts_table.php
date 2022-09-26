@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('slug')->unique();
             $table->text('body');
             $table->text('excerpt');
-            $table->string('thumbnail');
+            $table->string('thumbnail')->nullable();
             $table->timestamp('published_at')->useCurrent();
             $table->timestamps();
             $table->softDeletes();
