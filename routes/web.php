@@ -6,6 +6,8 @@ use App\Models\Post;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PostsFromAuthorController;
+use App\Http\Controllers\PostsFromCategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,20 +24,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// Various posts indexes
 Route::get('posts', [PostController::class, 'index']);
+Route::get('categories/{category:slug}', PostsFromCategoryController::class);
+Route::get('authors/{author:slug}', PostsFromAuthorController::class);
 
-Route::get('posts/{post}', function(Post $post){
-    //return $post->load('comments');
-    return $post->categories;
-});
-Route::get('categories/{category}', function(Category $category){
-    //return $post->load('comments');
-    return $category->posts;
-});
-
-Route::get('/users/{user:slug}', function (User $user) {
-    return $user->email;
-});
+// Single post
+Route::get('posts/{post:slug}', [PostController::class, 'show']);
 
 
 
