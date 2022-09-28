@@ -34,7 +34,7 @@
     </head>
     <body class="bg-gray-200">
         <div class="overflow-x-hidden bg-gray-100">
-            <?php // Navigation ?>
+            <x-commons.navigation></x-commons.navigation>
             <main class="px-6 py-8">
                 <div class="container flex justify-between mx-auto">
                     <article class="w-full lg:w-8/12">

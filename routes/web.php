@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthenticatedSessionController;
 use App\Http\Controllers\PostController;
 use App\Models\Category;
 use App\Models\Post;
@@ -32,6 +33,10 @@ Route::get('authors/{author:slug}', PostsFromAuthorController::class);
 // Single post
 Route::get('posts/{post:slug}', [PostController::class, 'show']);
 
+// Auth
+Route::get('login', [AuthenticatedSessionController::class, 'create'])->middleware('guest');
+Route::post('login', [AuthenticatedSessionController::class, 'store'])->middleware('guest');
+Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])->middleware('auth');
 
 
 

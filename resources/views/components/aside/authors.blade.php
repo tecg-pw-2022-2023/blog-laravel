@@ -15,5 +15,8 @@
             </li>
             @endforeach
         </ul>
+        @if($authors_count > $authors->count())
+            <div class="text-right"><a href="?aside-expanded=authors">See all {{ $authors_count }} authors</a></div>
+        @endif
     </div>
 </section>
