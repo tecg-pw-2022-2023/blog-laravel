@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\LoginFormRequest;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -11,14 +12,21 @@ class AuthenticatedSessionController extends Controller
         return view('auth.login');
     }
 
-    public function store()
+    public function store(LoginFormRequest $request)
     {
-        if (auth()->attempt(request()->only('email', 'password'))) {
+        $validated = $request->safe()->only('email', 'password');
+
+        if (auth()->attempt($validated)) {
             request()->session()->regenerate();
             return redirect('/posts');
         }
 
-        return back();
+        return back()
+            ->withErrors([
+                'email' => trans('auth.failed'),
+                'password' => trans('auth.password'),
+            ])
+            ->withInput();
     }
 
     public function destroy()
