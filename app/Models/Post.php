@@ -50,6 +50,12 @@ class Post extends Model
 
     protected $with = ['user', 'categories'];
     protected $withCount = ['comments'];
+    protected $fillable = ['title', 'body', 'excerpt', 'slug', 'user_id'];
+
+    public function getRouteKey()
+    {
+        return $this->slug;
+    }
 
     public function comments(): HasMany
     {

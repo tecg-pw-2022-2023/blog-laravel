@@ -26,17 +26,19 @@ Route::get('/', function () {
 });
 
 // Various posts indexes
-Route::get('posts', [PostController::class, 'index']);
-Route::get('categories/{category:slug}', PostsFromCategoryController::class);
-Route::get('authors/{author:slug}', PostsFromAuthorController::class);
+Route::get('/posts', [PostController::class, 'index']);
+Route::get('/categories/{category:slug}', PostsFromCategoryController::class);
+Route::get('/authors/{author:slug}', PostsFromAuthorController::class);
 
 // Single post
-Route::get('posts/{post:slug}', [PostController::class, 'show']);
+Route::post('/posts', [PostController::class, 'store'])->middleware('auth');
+Route::get('/posts/create', [PostController::class, 'create'])->middleware('auth');
+Route::get('/posts/{post:slug}', [PostController::class, 'show'])->name('single-post');
 
 // Auth
-Route::get('login', [AuthenticatedSessionController::class, 'create'])->middleware('guest');
-Route::post('login', [AuthenticatedSessionController::class, 'store'])->middleware('guest');
-Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])->middleware('auth');
+Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('login')->middleware('guest');
+Route::post('/login', [AuthenticatedSessionController::class, 'store'])->middleware('guest');
+Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->middleware('auth');
 
 
 
