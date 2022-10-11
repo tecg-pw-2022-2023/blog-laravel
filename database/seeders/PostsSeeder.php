@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Carbon\Carbon;
 use Faker\Factory;
+use App\Models\Post;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -30,7 +31,7 @@ class PostsSeeder extends Seeder
             $excerpt = $faker->sentence(40);
             $thumbnail = $faker->imageUrl(640, 480, true, 'landscape');
             $body = '<p>' . implode('</p><p>', $faker->paragraphs(12)) . '</p>';
-            DB::table('posts')->insert(
+            Post::create(
                 compact('title', 'slug', 'excerpt', 'user_id', 'body', 'created_at', 'updated_at', 'deleted_at', 'published_at', 'thumbnail')
             );
         }
