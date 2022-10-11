@@ -15,6 +15,10 @@
             @auth
                 <a href="/authors/{{auth()->user()->slug}}"
                    class="my-1 text-gray-800 hover:text-blue-500 md:mx-4 md:my-0">{{auth()->user()->name}}</a>
+                @can('create',\App\Models\Post::class)
+                    <a href="/posts/create"
+                       class="my-1 text-gray-800 hover:text-blue-500 md:mx-4 md:my-0">Create post</a>
+                @endcan
                 <form action="/logout"
                       method="post">
                     @csrf
