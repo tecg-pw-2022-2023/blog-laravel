@@ -28,6 +28,6 @@ class SendEmailToAdminWarningHimThatANewPostHasBeenCreated
     public function handle(PostCreated $event)
     {
         Mail::to('domi@domy.be')
-            ->send(new \App\Mail\PostCreated($event->post));
+            ->queue(new \App\Mail\PostCreated($event->post));
     }
 }
