@@ -2,10 +2,6 @@
 
 use App\Http\Controllers\AuthenticatedSessionController;
 use App\Http\Controllers\PostController;
-use App\Models\Category;
-use App\Models\Post;
-use App\Models\User;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostsFromAuthorController;
 use App\Http\Controllers\PostsFromCategoryController;
@@ -21,11 +17,8 @@ use App\Http\Controllers\PostsFromCategoryController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 // Various posts indexes
+Route::get('/', [PostController::class, 'index']);
 Route::get('/posts', [PostController::class, 'index']);
 Route::get('/categories/{category:slug}', PostsFromCategoryController::class);
 Route::get('/authors/{author:slug}', PostsFromAuthorController::class);
