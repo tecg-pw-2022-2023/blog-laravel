@@ -3,7 +3,7 @@
 
 A new post has been created
 
-<x-mail::button :url="'http://blog.test/posts/{{$post->slug}}'">
+<x-mail::button :url="'http://blog.test/posts/'.$post->slug">
 Visit {{$post->title}}
 </x-mail::button>
 
