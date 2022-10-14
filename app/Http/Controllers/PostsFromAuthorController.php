@@ -15,7 +15,7 @@ class PostsFromAuthorController extends Controller
      */
     public function __invoke(User $author)
     {
-        $posts = $author->posts()->paginate(10);
-        return view('author.index', compact('posts','author'));
+        $posts = $author->posts()->latest('published_at')->paginate(10);
+        return view('author.index', compact('posts', 'author'));
     }
 }

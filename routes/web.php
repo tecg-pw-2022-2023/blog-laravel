@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UncategorizedPostsController;
 use App\Http\Controllers\AuthenticatedSessionController;
 use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
@@ -20,6 +21,7 @@ use App\Http\Controllers\PostsFromCategoryController;
 // Various posts indexes
 Route::get('/', [PostController::class, 'index']);
 Route::get('/posts', [PostController::class, 'index']);
+Route::get('/categories/uncategorized', UncategorizedPostsController::class);
 Route::get('/categories/{category:slug}', PostsFromCategoryController::class);
 Route::get('/authors/{author:slug}', PostsFromAuthorController::class);
 

@@ -15,7 +15,7 @@ class PostsFromCategoryController extends Controller
      */
     public function __invoke(Category $category)
     {
-        $posts = $category->posts()->paginate(10);
+        $posts = $category->posts()->latest('published_at')->paginate(10);
         return view('category.index', compact('posts','category'));
     }
 }

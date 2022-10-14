@@ -2,7 +2,7 @@
     <div class="container flex flex-col mx-auto md:flex-row md:items-center md:justify-between">
         <h1 class="flex items-center justify-between">
             <a href="/posts"
-               class="text-xl font-bold text-gray-800 md:text-2xl">My Awesome Blog</a>
+               class="text-xl font-bold text-gray-800 md:text-2xl">{{ config('app.name') }}</a>
         </h1>
         <nav class="flex-col hidden md:flex md:flex-row md:-mx-4">
             <h2 class="sr-only">Main Navigation</h2>
