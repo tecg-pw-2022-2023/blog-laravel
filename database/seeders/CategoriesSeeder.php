@@ -20,7 +20,7 @@ class CategoriesSeeder extends Seeder
     {
         $faker = Factory::create();
         for ($i = 0; $i < 7; $i++) {
-            $name = strtolower(substr($faker->sentence(2), 0, -1));
+            $name = strtolower($faker->word());
             $slug = Str::slug($name);
             Category::create(compact(
                 'name', 'slug'
