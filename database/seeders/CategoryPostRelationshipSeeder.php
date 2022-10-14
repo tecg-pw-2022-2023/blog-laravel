@@ -2,9 +2,9 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Post;
+use App\Models\Category;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 
 class CategoryPostRelationshipSeeder extends Seeder
 {
@@ -12,17 +12,18 @@ class CategoryPostRelationshipSeeder extends Seeder
      * Run the database seeds.
      *
      * @return void
+     * @throws \Exception
      */
-    public function run()
+    public function run(): void
     {
-        $categories_ids = DB::table('categories')->pluck('id');
-
-        for ($i = 0; $i < 100; $i++) {
-            $post_id = $i+1;
-            for ($j = rand(0, intdiv(7, 2)); $j < 7; $j += rand(1, 7)) {
-                $category_id = $categories_ids[$j];
-                DB::table('category_post')->insert(compact('category_id', 'post_id'));
-            }
-        }
+        $categories = Category::all();
+        $categories_ids = $categories->pluck('id');
+        $posts = Post::all();
+        $posts->each(function ($post) use ($categories_ids) {
+            $c_ids = $categories_ids->random(random_int(0, 2));
+            $c_ids->each(function ($c_id) use ($post) {
+                $post->categories()->attach($c_id);
+            });
+        });
     }
 }

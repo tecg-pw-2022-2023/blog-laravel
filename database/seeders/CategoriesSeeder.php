@@ -2,12 +2,8 @@
 
 namespace Database\Seeders;
 
-use Faker\Factory;
 use App\Models\Category;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Str;
 
 class CategoriesSeeder extends Seeder
 {
@@ -15,16 +11,12 @@ class CategoriesSeeder extends Seeder
      * Run the database seeds.
      *
      * @return void
+     * @throws \Exception
      */
-    public function run()
+    public function run(): void
     {
-        $faker = Factory::create();
-        for ($i = 0; $i < 7; $i++) {
-            $name = strtolower($faker->word());
-            $slug = Str::slug($name);
-            Category::create(compact(
-                'name', 'slug'
-            ));
-        }
+        Category::factory()
+            ->count(random_int(8, 12))
+            ->create();
     }
 }

@@ -10,16 +10,16 @@ return new class extends Migration {
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
-        Schema::table('posts', function (Blueprint $table) {
+        Schema::table('posts', static function (Blueprint $table) {
             $table->foreignId('user_id')->constrained()->onUpdate('cascade');
         });
-        Schema::table('category_post', function (Blueprint $table) {
+        Schema::table('category_post', static function (Blueprint $table) {
             $table->foreignId('category_id')->constrained()->onUpdate('cascade');
             $table->foreignId('post_id')->constrained()->onUpdate('cascade');
         });
-        Schema::table('comments', function (Blueprint $table) {
+        Schema::table('comments', static function (Blueprint $table) {
             $table->foreignId('user_id')->constrained()->onUpdate('cascade');
             $table->foreignId('post_id')->constrained()->onUpdate('cascade');
         });
@@ -30,7 +30,7 @@ return new class extends Migration {
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         //
     }

@@ -44,6 +44,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Category[] $categories
  * @property-read int|null $categories_count
  * @property-read \App\Models\User $user
+ * @method static \Database\Factories\PostFactory factory(...$parameters)
+ * @method static \Illuminate\Database\Query\Builder|Post onlyTrashed()
+ * @method static \Illuminate\Database\Query\Builder|Post withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|Post withoutTrashed()
  */
 class Post extends Model
 {
@@ -51,7 +55,8 @@ class Post extends Model
 
     protected $with = ['user', 'categories'];
     protected $withCount = ['comments'];
-    protected $fillable = ['title', 'body', 'excerpt', 'slug', 'user_id'];
+    protected $guarded = [];
+    protected $dates = ['published_at'];
 
     public function getRouteKey()
     {
