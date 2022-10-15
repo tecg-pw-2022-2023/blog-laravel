@@ -20,8 +20,9 @@
                     @if($post->comments_count)
                         <x-posts.comments-list :post="$post"/>
                     @endif
+                    <x-forms.create-comment :post="$post"/>
                 </div>
-                <x-aside></x-aside>
+                <x-aside/>
             </div>
         </main>
         <x-commons.footer/>
