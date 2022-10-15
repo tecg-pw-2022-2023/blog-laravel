@@ -1,22 +1,27 @@
-<section class="px-8">
-    <h3 class="mb-4 text-xl font-bold text-gray-700">Authors</h3>
-    <div class="flex flex-col max-w-sm px-6 py-4 mx-auto bg-white rounded-lg shadow-md">
-        <ul class="-mx-4">
+@props(['title'])
+
+<x-aside.list-container>
+    <x-slot:title>{{ $title }}</x-slot:title>
+    @if($authors->count())
+        <ul>
             @foreach ($authors as $author)
-            <li class="flex items-center mb-3"><img
+                <li class="flex items-center mb-4"><img
                         src="<?= $author->avatar ?>"
                         alt="avatar"
-                        class="object-cover w-10 h-10 mx-4 rounded-full">
-                <p><a href="/authors/{{ $author->slug }}"
-                      class="mx-1 font-bold text-gray-700 hover:underline">{{ ucwords($author->name) }}</a>
-                    <span class="text-sm font-light text-gray-700">Created {{ $author->posts_count }} posts</span> and
-                    <span class="text-sm font-light text-gray-700">as posted {{ $author->comments_count }} comments</span>
-                </p>
-            </li>
+                        class="object-cover w-10 h-10 mr-2 rounded-full">
+                    <div><a href="/authors/{{ $author->slug }}"
+                            class="font-bold text-blue-700 hover:text-gray-600 hover:underline">{{ ucwords($author->name) }}</a>
+                        <p>Has created <em>{{ $author->posts_count }}</em> posts and posted
+                            <em>{{ $author->comments_count }}</em> comments</p>
+                    </div>
+                </li>
             @endforeach
         </ul>
         @if($authors_count > $authors->count())
-            <div class="text-right"><a href="?aside-expanded=authors">See all {{ $authors_count }} authors</a></div>
+            <div class="text-right"><a href="?aside-expanded=authors" class="text-blue-700 hover:underline">See all {{ $authors_count }} authors</a></div>
         @endif
-    </div>
-</section>
+    @else
+        <p>No post yet!</p>
+    @endif
+
+</x-aside.list-container>

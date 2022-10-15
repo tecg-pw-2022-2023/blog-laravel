@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\User;
+use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
 
 class UserSeeder extends Seeder
@@ -14,8 +15,10 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
+        $name = 'Dominique Vilain';
         User::factory()->create([
-            'name' => 'Dominique Vilain',
+            'name' => $name,
+            'slug' => Str::slug($name),
             'email' => 'dominique.vilain@hepl.be',
             'is_admin' => true,
         ]);
