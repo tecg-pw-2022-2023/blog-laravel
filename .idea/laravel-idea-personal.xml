@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="LaravelIdeaPersonalSettings">
+    <option name="generationStringOptionValues">
+      <map>
+        <entry key="createMailable.markdown" value="1" />
+        <entry key="createMailable.shouldQueue" value="1" />
+      </map>
+    </option>
+  </component>
+</project>
