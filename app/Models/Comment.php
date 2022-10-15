@@ -39,6 +39,8 @@ class Comment extends Model
 {
     use HasFactory, SoftDeletes;
 
+    protected $fillable = ['body', 'user_id'];
+
     public function post(): BelongsTo
     {
         return $this->belongsTo(Post::class);
