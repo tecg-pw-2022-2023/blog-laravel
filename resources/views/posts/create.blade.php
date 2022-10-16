@@ -8,7 +8,8 @@
                         <h1 class="text-xl font-bold text-gray-700 md:text-2xl">Create Post</h1>
                     </div>
                     <div class="mt-6">
-                        <form action="/posts"
+                        <form>
+                              action="/posts"
                               method="post">
                             @csrf
                             <label for="title"

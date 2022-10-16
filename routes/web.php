@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Post;
+use App\Http\Controllers\CommentsController;
 use App\Http\Controllers\UncategorizedPostsController;
 use App\Http\Controllers\AuthenticatedSessionController;
 use App\Http\Controllers\PostController;
@@ -38,13 +39,7 @@ Route::post('/login', [AuthenticatedSessionController::class, 'store'])->middlew
 Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->middleware('auth');
 
 // Comments
-Route::post('/comments/post/{post:id}', function (Post $post) {
-    $post->comments()->create([
-        'body' => request('body'),
-        'user_id' => auth()->id(),
-    ]);
-    return redirect('/posts/'.$post->slug);
-})->middleware('auth');
+Route::post('/comments/post/{post:id}', [CommentsController::class, 'store'])->middleware('auth');
 
 
 
