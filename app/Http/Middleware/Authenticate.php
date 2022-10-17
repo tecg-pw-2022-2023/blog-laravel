@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use Illuminate\Support\Facades\Route;
 use Illuminate\Auth\Middleware\Authenticate as Middleware;
 
 class Authenticate extends Middleware
@@ -14,7 +15,12 @@ class Authenticate extends Middleware
      */
     protected function redirectTo($request)
     {
-        if (! $request->expectsJson()) {
+        if (!$request->expectsJson()) {
+            $previousRequest = request()->create(url()->previous());
+            if (app('router')->getRoutes()->match($previousRequest)->getName() === 'single-post') {
+                session()->flash('previous-url', url()->previous().'#create-comment-form');
+            }
+
             return route('login');
         }
     }

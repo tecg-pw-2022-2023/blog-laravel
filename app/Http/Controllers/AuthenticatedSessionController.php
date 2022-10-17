@@ -8,6 +8,9 @@ class AuthenticatedSessionController extends Controller
 {
     public function create()
     {
+        if (session()->has('previous-url')) {
+            session()->flash('previous-url', session('previous-url'));
+        }
         return view('auth.login');
     }
 
@@ -16,8 +19,9 @@ class AuthenticatedSessionController extends Controller
         $validated = $request->safe()->only('email', 'password');
 
         if (auth()->attempt($validated)) {
+            $redirect = session()->has('previous-url') ? session('previous-url') : '/posts';
             request()->session()->regenerate();
-            return redirect('/posts');
+            return redirect($redirect);
         }
 
         return back()

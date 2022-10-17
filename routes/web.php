@@ -28,9 +28,9 @@ Route::get('/categories/{category:slug}', PostsFromCategoryController::class);
 Route::get('/authors/{author:slug}', PostsFromAuthorController::class);
 
 // Single post
-Route::post('/posts', [PostController::class, 'store'])->middleware('auth')->can('create', \App\Models\Post::class);
+Route::post('/posts', [PostController::class, 'store'])->middleware('auth')->can('create', Post::class);
 Route::get('/posts/create', [PostController::class, 'create'])->middleware('auth')->can('create',
-    \App\Models\Post::class);
+    Post::class);
 Route::get('/posts/{post:slug}', [PostController::class, 'show'])->name('single-post');
 
 // Auth
