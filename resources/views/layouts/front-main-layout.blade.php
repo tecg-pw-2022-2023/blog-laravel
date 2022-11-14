@@ -14,7 +14,7 @@
         <meta http-equiv="X-UA-Compatible"
               content="ie=edge">
         <title>{{ config('app.name') }}</title>
-        @vite('resources/css/app.css')
+        @vite(['resources/css/app.css','resources/js/app.js'])
     </head>
     <body class="bg-gray-200 font-serif">
         {{ $slot }}
