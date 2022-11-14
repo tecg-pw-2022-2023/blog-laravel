@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Post;
+use App\Http\Controllers\SearchController;
 use App\Http\Controllers\CommentsController;
 use App\Http\Controllers\UncategorizedPostsController;
 use App\Http\Controllers\AuthenticatedSessionController;
@@ -40,6 +41,7 @@ Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->midd
 
 // Comments
 Route::post('/comments/post/{post:id}', [CommentsController::class, 'store'])->middleware('auth');
+Route::get('/search', SearchController::class);
 
 
 

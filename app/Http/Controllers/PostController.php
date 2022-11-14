@@ -46,6 +46,7 @@ class PostController extends Controller
         $validatedPostData['slug'] = Str::slug($validatedPostData['title']);
         $validatedPostData['user_id'] = auth()->id();
         $validatedCategoryId = $request->safe()->only('category_id');
+        $validatedPostData['published_at'] = now();
 
         $post = Post::create($validatedPostData);
         foreach ($validatedCategoryId as $id) {

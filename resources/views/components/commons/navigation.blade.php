@@ -4,6 +4,10 @@
             <a href="/posts"
                class="text-xl font-bold text-gray-800 md:text-2xl">{{ config('app.name') }}</a>
         </h1>
+        <form action="/search" method="get">
+            <input type="search" name="query" class="border border-dark rounded-md">
+            <input type="submit" value="search">
+        </form>
         <nav class="flex-col hidden md:flex md:flex-row md:-mx-4">
             <h2 class="sr-only">Main Navigation</h2>
             <a href="/posts"
